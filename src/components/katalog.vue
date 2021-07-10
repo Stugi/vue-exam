@@ -1,9 +1,9 @@
 <template>
 <section class="categorys">
-  <div v-for="category in allcategory" :key="category.id" class="" @click="goToCategory">
+  <div v-for="category in allcategory" :key="category.id" class="">
 
     <!-- <router-link :to="{path:'/catalog'}">Открыть</router-link> -->
-    <router-link :to="{name:'Catalog1', params:{parentpath:category.path}}">
+    <router-link :to= "{name:(category.leaf) ? 'Goods':'Catalog1', params:{parentpath:category.path}}">
       <div class="category">
         <img :src="'../img/'+category.img_path">
       </div>
@@ -19,15 +19,8 @@ export default {
   name: "Katalog",
   props: {
     allcategory: Array
-  },
-  methods: {
-    goToCategory(e) {
-      console.log(e.target);
-      console.log(this.$router);
-
-      // return this.$router.push(this.$router+'/');
-    }
   }
+
 }
 </script>
 

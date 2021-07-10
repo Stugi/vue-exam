@@ -129,3 +129,55 @@
     parents: []
   }
 ]
+
+[
+  {
+    id: 1,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар1",
+    description: "Товар1 ИЗ Процессоры",
+    catalogs: [2]
+  }, {
+    id: 2,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар2",
+    description: "Товар2  ИЗ Процессоры",
+    catalogs: [2]
+  }, {
+    id: 3,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар3",
+    description: "Товар3 ИЗ Процессоры",
+    catalogs: [2]
+  }, {
+    id: 4,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар4",
+    description: "Товар4  ИЗ Процессоры",
+    catalogs: [2]
+  }, {
+    id: 10,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар1",
+    description: "Товар1 ИЗ Серверные материнские платы",
+    catalogs: [10]
+  }, {
+    id: 11,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар2",
+    description: "Товар2  ИЗ Серверные материнские платы",
+    catalogs: [10]
+  }, {
+    id: 12,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар3",
+    description: "Товар3 ИЗ Серверные материнские платы",
+    catalogs: [10]
+  }, {
+    id: 13,
+    imgs_description: ["good2.png", "good3.png"],
+    name: "Товар4",
+    description: "Товар4  ИЗ Серверные материнские платы",
+    catalogs: [10]
+  }
+]

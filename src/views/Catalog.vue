@@ -13,7 +13,8 @@ export default {
   computed:{
     all_category(){
       return this.$store.getters.getCategoryies(this.$route.params);
-    }
+    },
+
 
   },
   methods:{
