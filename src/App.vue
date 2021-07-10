@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <img @click="goHome" src="https://img.icons8.com/ios/50/000000/kiwi-bird.png"/>
+    <img @click="goHome" src="../public/img/kiwi-bird.png"/>
     <!-- <router-link to="/"></router-link> -->
     <router-link to="/auth">Авторизация</router-link>
     <router-link to="/catalog">Каталог</router-link>
@@ -22,6 +22,10 @@ export default{
 <style>
 #app {
   color: #2c3e50;
+}
+
+*{
+  box-sizing: border-box;
 }
 
 #nav {
