@@ -5,34 +5,48 @@
       <Slider v-model="number" :min="0" :max="3" class="slider" />
     </div>
   </section>
-  <section>
-    <div class="">
-      Popularity
+    <div class="katalog">
+      <h3>Популярные категории:</h3>
+      <katalog :allcategory="populyarity"></katalog>
     </div>
-  </section>
 </div>
 </template>
 
 <script>
 import Slider from "../components/slider";
+import katalog from "../components/katalog";
 
 export default {
   name: "App",
   components: {
-    Slider
+    Slider,
+    katalog
   },
-  data(){
-    return{
-      number:0
+  data() {
+    return {
+      number: 0
     };
+  },
+  computed: {
+    populyarity() {
+      return this.$store.getters.getCategoryies({parentpath:"populyarity"});
+    },
   }
-};
+}
 </script>
 
 <style scoped>
-.slides{
-  height: 100vh;
+.slides {
+  height: 100%;
   background-color: #eeeeee;
 }
-
+.katalog{
+  z-index: 50;
+  position: absolute;
+  background-color: rgba(200, 200, 200, 0.1);
+  text-align: center;
+  border-radius: 10px;
+  top: 25%;
+  left:25%;
+}
 </style>

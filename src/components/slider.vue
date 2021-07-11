@@ -1,10 +1,11 @@
 <template>
-<div>
+<div id = "#im">
   <transition-group name="fade" tag="div">
     <div v-for="i in [currentIndex]" :key="i" class="slide">
       <img :src="currentImg" class="slide">
     </div>
   </transition-group>
+
   <!-- <a class="prev" @click="prev" href="#">&#10094; Previous</a> -->
   <!-- <a class="next" @click="next" href="#">Next &#10095;</a> -->
 </div>
@@ -82,5 +83,13 @@ img {
   /* visibility: hidden; */
   width: 100%;
   opacity: 0;
+}
+#im{
+position: absolute;
+background-color: #eeeeee;
+}
+.catalog{
+  top: 50%;
+  position:relative;
 }
 </style>

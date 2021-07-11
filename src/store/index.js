@@ -4,6 +4,7 @@ import {
 
 export default createStore({
   state: {
+    garbage: [],
     all_category: [{
         id: 1,
         img_path: "category.png",
@@ -17,7 +18,7 @@ export default createStore({
         leaf: true,
         name: "Процессоры",
         path: "procs",
-        parents: ['copmlect']
+        parents: ['copmlect',"populyarity"]
       }, {
         id: 21,
         path: "matplat",
@@ -53,14 +54,14 @@ export default createStore({
         img_path: "category.png",
         leaf: true,
         name: "SSD",
-        parents: ['copmlect']
+        parents: ['copmlect',"populyarity"]
       }, {
         id: 7,
         path: "hd",
         img_path: "category.png",
         leaf: true,
         name: "Жесткие диски",
-        parents: ['copmlect']
+        parents: ['copmlect',"populyarity"]
       }, {
         id: 8,
         path: "copmlect-for-server",
@@ -161,49 +162,57 @@ export default createStore({
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар1",
       description: "Товар1 ИЗ Процессоры",
-      catalogs: [2]
+      catalogs: [2],
+      price: 1000
     }, {
       id: 2,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар2",
       description: "Товар2  ИЗ Процессоры",
-      catalogs: [2]
+      catalogs: [2],
+      price: 11000
     }, {
       id: 3,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар3",
       description: "Товар3 ИЗ Процессоры",
-      catalogs: [2]
+      catalogs: [2],
+      price: 12000
     }, {
       id: 4,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар4",
       description: "Товар4  ИЗ Процессоры",
-      catalogs: [2]
+      catalogs: [2],
+      price: 10
     }, {
       id: 10,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар1",
       description: "Товар1 ИЗ Серверные материнские платы",
-      catalogs: [10]
+      catalogs: [10],
+      price: 5678
     }, {
       id: 11,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар2",
       description: "Товар2  ИЗ Серверные материнские платы",
-      catalogs: [10]
+      catalogs: [10],
+      price: 999
     }, {
       id: 12,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар3",
       description: "Товар3 ИЗ Серверные материнские платы",
-      catalogs: [10]
+      catalogs: [10],
+      price: 99989
     }, {
       id: 13,
       imgs_description: ["good2.png", "good3.png"],
       name: "Товар4",
       description: "Товар4  ИЗ Серверные материнские платы",
-      catalogs: [10]
+      catalogs: [10],
+      price: 10009
     }]
   },
   getters: {
@@ -221,19 +230,19 @@ export default createStore({
     getGoods: state => ({
       parentpath
     }) => {
-      let cat = state.all_category.filter(e=>e.path===parentpath)[0];
-      return state.goods.filter(e=>{
+      let cat = state.all_category.filter(e => e.path === parentpath)[0];
+      return state.goods.filter(e => {
         return e.catalogs.includes(cat.id);
       });
     },
     getPaths: state => ({
       parentpath
     }) => {
-      let findPath = function(data, parentpath, arr){
-        let cat = data.filter(e=>e.path===parentpath)[0];
+      let findPath = function(data, parentpath, arr) {
+        let cat = data.filter(e => e.path === parentpath)[0];
         arr.push(cat);
-        if(cat.parents && cat.parents[0]){
-            findPath(data, cat.parents[0], arr);
+        if (cat.parents && cat.parents[0]) {
+          findPath(data, cat.parents[0], arr);
         }
         return arr;
       };
@@ -242,8 +251,47 @@ export default createStore({
       findPath(state.all_category, parentpath, res)
       return res;
     },
-
-
-
-  }
+    goodById: state => (
+      id
+    ) => {
+      return state.goods.filter(e => e.id == id)[0];
+    },
+    getGarbage: state => () => {
+      return state.garbage;
+    },
+    garbageCount: state => () => {
+      if (state.garbage && state.garbage.length>0) {
+        let count = 0,
+          summ = 0;
+        for (let i = 0,array = state.garbage; i < array.length; i++) {
+          count += array[i].count;
+          summ += (array[i].count * array[i].price);
+        }
+        return {
+          "count": count,
+          "summ": summ
+        }
+      } else{
+        return {};
+      }
+    },
+  },
+  mutations: {
+    addToGarbage(state, good) {
+      let obj = Object.assign({}, good);
+      if (state.garbage.findIndex(e => e.id === obj.id) < 0) {
+        obj["count"] = 1;
+        obj["summ"] = () => {
+          return this.count * this.price
+        }
+        state.garbage.push(obj);
+      } else {
+        state.garbage.filter(e => e.id === obj.id)[0].count += 1;
+      }
+    },
+    removeFromGarbage(state, id) {
+      let ind = state.garbage.findIndex(e => e.id === id)
+      state.garbage.splice(ind, 1)
+    },
+  },
 });

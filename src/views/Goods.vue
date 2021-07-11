@@ -17,7 +17,8 @@
       <p class="descr">{{good.description}}</p>
     </div>
     <div class="butt">
-      <button type="button" name="button">В корзину</button>
+      <button type="button" name="button" @click='add(good)'>В корзину</button>
+      <h4>{{good.price}}  ₽</h4>
     </div>
 
   </div>
@@ -29,6 +30,7 @@
 
 <script>
 import breadcrumbs from "../components/breadcrumbs";
+// import {mapMutations} from 'vuex';
 export default {
 
   name: "Goods",
@@ -44,6 +46,13 @@ export default {
   components: {
     breadcrumbs
   },
+  methods:{
+     // ...mapMutations(['addToGarbage']),
+     add(good){
+       this.$store.commit('addToGarbage',good);
+
+     }
+  }
 }
 </script>
 
@@ -146,5 +155,14 @@ main {
   -ms-flex: 0 0 58.333333%;
   flex: 0 0 58.333333%;
   max-width: 58.333333%;
+}
+
+h4 {
+  font-weight: 700;
+  white-space: nowrap;
+  color: #001a34;
+  display: block;
+  font-family: GTEestiPro, arial, sans-serif;
+  display: block;
 }
 </style>

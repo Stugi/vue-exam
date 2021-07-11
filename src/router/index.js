@@ -50,7 +50,6 @@ const routes = [{
     name: "Good",
     path: '/good/:id',
     component: Good
-
   },
   {
     path: '/garbage',

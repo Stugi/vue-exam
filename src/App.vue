@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <img @click="goHome" src="../public/img/kiwi-bird.png"/>
+    <img @click="goHome" :src="require('../public/img/kiwi-bird.png')"/>
     <!-- <router-link to="/"></router-link> -->
     <router-link to="/auth">Авторизация</router-link>
     <router-link to="/catalog">Каталог</router-link>
@@ -57,10 +57,11 @@ export default{
 }
 
 #nav img{
-  width: 50px;height: 50px;
+  /* width: 50px;height: 50px;
   padding-left: 50px;
-  padding-right: 50px;
+  padding-right: 50px;*/
   cursor: pointer;
+  padding-left: 5px;
 }
 
 </style>
