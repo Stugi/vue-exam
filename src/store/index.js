@@ -221,9 +221,29 @@ export default createStore({
     getGoods: state => ({
       parentpath
     }) => {
-      console.log(parentpath);
-      return state.goods;
-    }
+      let cat = state.all_category.filter(e=>e.path===parentpath)[0];
+      return state.goods.filter(e=>{
+        return e.catalogs.includes(cat.id);
+      });
+    },
+    getPaths: state => ({
+      parentpath
+    }) => {
+      let findPath = function(data, parentpath, arr){
+        let cat = data.filter(e=>e.path===parentpath)[0];
+        arr.push(cat);
+        if(cat.parents && cat.parents[0]){
+            findPath(data, cat.parents[0], arr);
+        }
+        return arr;
+      };
+
+      let res = [];
+      findPath(state.all_category, parentpath, res)
+      return res;
+    },
+
+
 
   }
 });

@@ -22,6 +22,7 @@ export default{
 <style>
 #app {
   color: #2c3e50;
+
 }
 
 *{

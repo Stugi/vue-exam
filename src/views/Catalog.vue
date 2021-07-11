@@ -1,6 +1,8 @@
 <template lang="html">
-  <h3>Каталог</h3>
-  <katalog :allcategory="all_category"></katalog>
+  <div class="main">
+    <h3>Каталог</h3>
+    <katalog :allcategory="all_category"></katalog>
+  </div>
   <!-- <p>{{all_category}}</p> -->
 </template>
 
@@ -29,6 +31,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.main{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+}
   .category{
     background-color: #f5f5f5;
 

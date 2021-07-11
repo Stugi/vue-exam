@@ -3,6 +3,7 @@ import {
   createWebHistory
 } from 'vue-router'
 import Home from '../views/Home.vue'
+import Good from '../views/Good.vue'
 
 const routes = [{
     path: '/',
@@ -29,18 +30,27 @@ const routes = [{
   {
     path: '/catalog',
     name: 'Catalog',
-    component: () => import('../views/Catalog.vue'),
-    children: [{
-      name: "Catalog1",
-      path: ':parentpath',
-      component: () => import('../views/Catalog.vue')
+    component: () => import('../views/Catalog.vue')
+  },
+  {
+    name: "Catalog1",
+    path: '/:parentpath',
+    component: () => import('../views/Catalog.vue')
 
-    }]
   },
   {
     name: "Goods",
     path: '/goods/:parentpath',
-    component: () => import('../views/Goods.vue')
+    component: () => {
+      console.log('../views/Goods.vue');
+      return import('../views/Goods.vue')
+    },
+  },
+  {
+    name: "Good",
+    path: '/good/:id',
+    component: Good
+
   },
   {
     path: '/garbage',
@@ -50,8 +60,7 @@ const routes = [{
   {
     // 404 ошибка если страничка не найдена
     path: '/:pathMatch(.*)*',
-    redirect: '/' /*переадресация*/
-    // component:()=>import('../views/NotFound.vue')
+    redirect: '/'
   },
 ];
 

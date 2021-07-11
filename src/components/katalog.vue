@@ -20,7 +20,6 @@ export default {
   props: {
     allcategory: Array
   }
-
 }
 </script>
 
@@ -44,5 +43,16 @@ export default {
   }
   .categorys div{
     text-align: center;
+  }
+
+   a {
+    display: block;
+    text-decoration: none;
+    font-weight: bolder;
+    color: #111;
+  }
+
+   a:hover {
+    color: #5868c7;
   }
 </style>
